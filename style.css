@@ -1,1 +1,46 @@
-/* Put stuff here */
+html, body {
+  height: 100%;
+}
+
+#container {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1.5fr 6fr 1fr;
+  justify-content: center;
+  align-items: start;
+}
+
+#header {
+  align-self: center;
+  display: grid;
+  justify-content: center;
+  margin-bottom: 3vh;
+}
+
+#header p {
+  font-family: 'Courier new', sans-serif;
+  font-size: 3rem;
+}
+
+#body {
+  border: 1px solid black;
+}
+
+#footer {
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-family: "Trebuchet MS";
+  gap: 6px;
+  margin-bottom: 2vh;
+}
+
+.copyright {
+  justify-self: end;
+}
+
+.github {
+  width: 10%; /* 1.5% */
+}

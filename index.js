@@ -12,7 +12,9 @@ function addBookToLibrary(title, author, pages, haveRead) {
 }
 
 function displayLibrary() {
-  myLibrary.forEach((book) => console.log(book));
+  myLibrary.forEach((book) => {
+    // Use a grid populate library 
+  });
 }
 
 for (let i = 0; i < 10; i++) {
