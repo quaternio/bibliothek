@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="reset.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="index.js" defer></script>
     <title>Bibliothek</title>
   </head>
@@ -15,7 +14,11 @@
         <p>Bibliothek</p>
       </div>
 
-      <div id="body"></div>
+      <div id="body">
+        <div id="touchstone" class="tile">
+          <button class="add-book">Add Book</button>
+        </div> 
+      </div>
 
       <div id="footer">
         <div class="copyright">
@@ -27,6 +30,34 @@
           </a>
         </div>
       </div>
+
+      <dialog>
+        <form id="book-form" method="dialog">
+          <label>
+            Title:
+            <input type="text" required />
+          </label>
+          <label>
+            Author:
+            <input type="text" required />
+          </label>
+          <label>
+            Number of Pages:
+            <input type="number" min="1" max="10000" required />
+          </label>
+          <label>
+            Have Read:
+            <select>
+              <option value="default">False</option>
+              <option>True</option>
+            </select>
+          </label>
+          <div class="modal-buttons">
+            <input type="submit" id="submit-book" value="Add Book" />
+            <button id="cancel-button">Cancel</button>
+          </div>
+        </form>
+      </dialog>
     </div>
   </body>
 </html>
