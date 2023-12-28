@@ -45,14 +45,42 @@ html, body {
 }
 
 .tile {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr) 1fr;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
   margin-left: 15px;
   margin-right: 15px;
 }
 
+.tile-entry {
+  justify-self: center;
+}
+
 #touchstone {
   margin-top: 15px;  
   margin-bottom: 15px;  
+}
+
+.ts-header {
+  font-weight: bold;
+}
+
+.book-button {
+  display: grid;
+  background-color: #FFFF;
+  border: 0;
+}
+
+.plus-sign {
+  justify-self: center;
+  width: 3vh;
+}
+
+.minus-sign {
+  justify-self: center;
+  width: 3vh;
 }
 
 #footer {
