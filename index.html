@@ -19,7 +19,7 @@
           <p class="ts-header tile-entry">Title</p>
           <p class="ts-header tile-entry">Author</p>
           <p class="ts-header tile-entry"># Pages</p>
-          <p class="ts-header tile-entry">Have Read</p>
+          <p class="ts-header tile-entry">Status</p>
           <button id="add-book" class="book-button">
             <img src="assets/plus-box-outline.svg" class="plus-sign"/>
           </button>
@@ -53,9 +53,9 @@
           </label>
           <label>
             Have Read:
-            <select>
-              <option id="bf-have-read" value="false">False</option>
-              <option>True</option>
+            <select id="bf-status">
+              <option id="bf-not-read" value="Not Read">Not Read</option>
+              <option id="bf-read" value="Read">Read</option>
             </select>
           </label>
           <div class="modal-buttons">

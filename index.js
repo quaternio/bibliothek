@@ -11,12 +11,38 @@ function Book(title, author, pages, haveRead) {
   this.author = author;
   this.pages = pages;
   this.haveRead = haveRead;
+
+  this.isEqual = (other) => {
+    let sameTitle = this.title === other.title;
+    let sameAuthor = this.author === other.author;
+    let samePages = this.pages === other.pages;
+
+    return sameTitle && sameAuthor && samePages;
+  }
 }
 
-function registerButton(button) {
-  console.log("Hehe");
-  let bookIdx = myLibrary.length - 1;
+function registerButtons(statusButton, deleteButton, book) {
+  registerStatusButton(statusButton, book); 
+  registerDeleteButton(deleteButton, book);
+}
+
+function registerStatusButton(button, book) {
   button.addEventListener("click", (e) => {
+    book.haveRead = book.haveRead === "Read" ? "Not Read" : "Read";
+
+    button.innerText = book.haveRead;
+  });
+}
+
+function registerDeleteButton(button, book) {
+  button.addEventListener("click", (e) => {
+    let bookIdx;
+    for (let i = 0; i < myLibrary.length; i++) {
+      if (book.isEqual(myLibrary[i])) {
+        bookIdx = i;
+        break;
+      }
+    }
     myLibrary.splice(bookIdx, 1);
 
     resetLibrary();
@@ -40,22 +66,23 @@ function addBookTile(book) {
   let titleEntry = document.createElement("p");
   titleEntry.classList.add("tile-entry");
   titleEntry.innerText = book.title;
-  bookTile.appendChild(titleEntry);
 
   let authorEntry = document.createElement("p");
   authorEntry.classList.add("tile-entry");
   authorEntry.innerText = book.author;
-  bookTile.appendChild(authorEntry);
 
   let pagesEntry = document.createElement("p");
   pagesEntry.classList.add("tile-entry");
   pagesEntry.innerText = book.pages;
-  bookTile.appendChild(pagesEntry);
   
   let haveReadEntry = document.createElement("p");
-  haveReadEntry.classList.add("tile-entry");
-  haveReadEntry.innerText = book.haveRead;
-  bookTile.appendChild(haveReadEntry);
+  haveReadEntry.classList.add("tile-entry"); 
+  haveReadEntry.classList.add("status-button-container");
+  let statusToggle = document.createElement("button");
+  statusToggle.classList.add("status-toggle");
+  statusToggle.innerText = book.haveRead;
+  haveReadEntry.appendChild(statusToggle);
+  // Does this have to depend on delete button?
   
   let deleteButton = document.createElement("button"); 
   deleteButton.classList.add("book-button");
@@ -63,9 +90,14 @@ function addBookTile(book) {
   let minus = document.createElement("img");
   minus.src = "assets/minus-box-outline.svg";
   minus.classList.add("minus-sign");
-
   deleteButton.appendChild(minus);
-  registerButton(deleteButton);
+
+  registerButtons(statusToggle, deleteButton, book);
+
+  bookTile.appendChild(titleEntry);
+  bookTile.appendChild(authorEntry);
+  bookTile.appendChild(pagesEntry);
+  bookTile.appendChild(haveReadEntry);
   bookTile.appendChild(deleteButton);
 
   body.appendChild(bookTile); 
@@ -109,7 +141,9 @@ bookForm.addEventListener("submit", (e) => {
   let author = document.getElementById("bf-author");
   let title = document.getElementById("bf-title");
   let pages = document.getElementById("bf-pages");
-  let haveRead = document.getElementById("bf-have-read");
+  let haveRead = document.getElementById("bf-status");
+
+  console.log(haveRead.value);
 
   if (!title.value || !author.value || !pages.value)
     alert("Invalid Entry");
@@ -125,7 +159,7 @@ cancelButton.addEventListener("click", () => {
   dialog.close();
 });
 
-//for (let i = 0; i < 10; i++) {
-//  addBookToLibrary(`Book ${i}`, 'the guy', Math.floor(1000000*Math.random()), true);
-//}
+// for (let i = 0; i < 100; i++) {
+//   addBookToLibrary(`Book ${i}`, 'the guy', Math.floor(1000000*Math.random()), "Not Read");
+// }
 
